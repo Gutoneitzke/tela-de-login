@@ -3,7 +3,7 @@
     $dbHost = 'localhost';
     $dbUsername = 'root';
     $dbPassword = '';
-    $dbName = 'formulario-noshi2';
+    $dbName = 'formulario-noshi';
 
     $conexao = new mysqli ($dbHost, $dbUsername,  $dbPassword, $dbName);
 

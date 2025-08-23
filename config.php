@@ -9,7 +9,7 @@
 
 
     if (!$conexao->connect_errno) {
-        echo "Erro";
+        echo "Erro ao conectar com o banco de dados: ";
     }
 
    else

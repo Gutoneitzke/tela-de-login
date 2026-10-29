@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar | GN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="box">
+        <h1>Entrar</h1>
+        <p class="sub">Use o e-mail e a senha do seu cadastro.</p>
+
+        <p id="mensagem" class="mensagem" role="alert" hidden></p>
+
+        <form action="login.php" method="POST">
+            <div class="inputBox">
+                <input type="email" name="email" id="email" class="inputUser" placeholder=" " autocomplete="email" required>
+                <label for="email" class="labelInput">E-mail</label>
+            </div>
+
+            <div class="inputBox">
+                <input type="password" name="senha" id="senha" class="inputUser" placeholder=" " autocomplete="current-password" required>
+                <label for="senha" class="labelInput">Senha</label>
+            </div>
+
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+
+        <p class="rodape-form">Ainda não tem conta? <a href="formulario.html">Criar conta</a></p>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const textos = {
+            erro:    ['erro', 'E-mail ou senha incorretos. Confira os dados e tente de novo.'],
+            cadastro:['ok',   'Conta criada. Entre com seu e-mail e senha.'],
+            sair:    ['ok',   'Você saiu da conta.'],
+            acesso:  ['erro', 'Entre na sua conta para acessar o painel.']
+        };
+        for (const chave in textos) {
+            if (params.has(chave)) {
+                const el = document.getElementById('mensagem');
+                el.textContent = textos[chave][1];
+                el.classList.add(textos[chave][0]);
+                el.hidden = false;
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

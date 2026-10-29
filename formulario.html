@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário | GN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="box largo">
+        <h1>Formulário de clientes</h1>
+        <p class="sub">Preencha seus dados para criar a conta.</p>
+
+        <p id="mensagem" class="mensagem erro" role="alert" hidden></p>
+
+        <form action="cadastro.php" method="POST">
+            <div class="inputBox">
+                <input type="text" name="nome" id="nome" class="inputUser" placeholder=" " autocomplete="name" minlength="3" maxlength="120" required>
+                <label for="nome" class="labelInput">Nome completo</label>
+            </div>
+
+            <div class="inputBox">
+                <input type="email" name="email" id="email" class="inputUser" placeholder=" " autocomplete="email" maxlength="150" required>
+                <label for="email" class="labelInput">E-mail</label>
+            </div>
+
+            <div class="linha">
+                <div class="inputBox">
+                    <input type="password" name="senha" id="senha" class="inputUser" placeholder=" " autocomplete="new-password" minlength="8" required>
+                    <label for="senha" class="labelInput">Senha (mín. 8 caracteres)</label>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="confirmar_senha" id="confirmar_senha" class="inputUser" placeholder=" " autocomplete="new-password" minlength="8" required>
+                    <label for="confirmar_senha" class="labelInput">Confirmar senha</label>
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <input type="tel" name="telefone" id="telefone" class="inputUser" placeholder=" " autocomplete="tel" inputmode="numeric" required>
+                <label for="telefone" class="labelInput">Telefone com DDD</label>
+            </div>
+
+            <fieldset class="grupo">
+                <legend>Sexo</legend>
+                <div class="opcoes">
+                    <span class="opcao">
+                        <input type="radio" id="feminino" name="genero" value="feminino" required>
+                        <label for="feminino">Feminino</label>
+                    </span>
+                    <span class="opcao">
+                        <input type="radio" id="masculino" name="genero" value="masculino">
+                        <label for="masculino">Masculino</label>
+                    </span>
+                    <span class="opcao">
+                        <input type="radio" id="outro" name="genero" value="outro">
+                        <label for="outro">Outro</label>
+                    </span>
+                </div>
+            </fieldset>
+
+            <div class="inputBox fixo">
+                <input type="date" name="data_nascimento" id="data_nascimento" class="inputUser" required>
+                <label for="data_nascimento" class="labelInput">Data de nascimento</label>
+            </div>
+
+            <div class="linha linha-cidade">
+                <div class="inputBox">
+                    <input type="text" name="cidade" id="cidade" class="inputUser" placeholder=" " autocomplete="address-level2" maxlength="100" required>
+                    <label for="cidade" class="labelInput">Cidade</label>
+                </div>
+                <div class="inputBox">
+                    <select name="estado" id="estado" class="inputUser" autocomplete="address-level1" required>
+                        <option value="" selected disabled hidden></option>
+                        <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                        <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                        <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                        <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                        <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                        <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                        <option>SP</option><option>SE</option><option>TO</option>
+                    </select>
+                    <label for="estado" class="labelInput">Estado</label>
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" name="endereco" id="endereco" class="inputUser" placeholder=" " autocomplete="street-address" maxlength="200" required>
+                <label for="endereco" class="labelInput">Endereço</label>
+            </div>
+
+            <button type="submit" class="btn">Criar conta</button>
+        </form>
+
+        <p class="rodape-form">Já tem conta? <a href="teladelogin.html">Entrar</a></p>
+    </main>
+
+    <script>
+        const erros = {
+            campos:  'Confira os campos: algum dado está vazio ou em formato inválido.',
+            email:   'Informe um e-mail válido.',
+            senha:   'A senha precisa ter pelo menos 8 caracteres.',
+            confere: 'As duas senhas não são iguais.',
+            existe:  'Já existe uma conta com esse e-mail. Entre ou use outro e-mail.',
+            erro:    'Não foi possível criar a conta agora. Tente novamente.'
+        };
+        const codigo = new URLSearchParams(location.search).get('erro');
+        if (codigo && erros[codigo]) {
+            const el = document.getElementById('mensagem');
+            el.textContent = erros[codigo];
+            el.hidden = false;
+        }
+    </script>
+</body>
+</html>
